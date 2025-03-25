@@ -9,8 +9,13 @@ wheels/
 # Virtual environments
 .venv
 
-# CSV files
-*.csv
+# Data files
+data/*
+!data/
+!data/archive/
+!data/archive/.gitkeep
+!data/latest.csv
+
 
 # JSON files
 *.json
