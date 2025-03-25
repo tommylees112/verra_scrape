@@ -29,9 +29,7 @@ def detailed_column_summary(df: pd.DataFrame) -> pd.DataFrame:
     return summary_df
 
 
-if __name__ == "__main__":
-    path = Path("allprojects.csv")
-
+def clean_csv(path: Path) -> pd.DataFrame:
     # fix ragged rows
     df = pd.read_csv(path)
 
@@ -58,8 +56,25 @@ if __name__ == "__main__":
     summary = detailed_column_summary(df)
     logger.info(f"Column summary:\n{summary}")
 
-    # save output
-    df.to_csv(
-        "cleaned.csv", index=False, encoding="utf-8", lineterminator="\n", quoting=1
-    )
-    logger.success("Saved cleaned data to cleaned.csv")
+    # Find specific row matching criteria and display as JSON
+    target_row = df[
+        (df["Methodology"] == "VM0007")
+        & (df["Crediting Period Start Date"] == "2009-01-01")
+        & (df["Crediting Period End Date"] == "2046-12-31")
+    ].copy()
+
+    if not target_row.empty:
+        logger.info("Found matching row:")
+        # Format datetime objects as strings before JSON serialization
+        for col in date_columns:
+            target_row[col] = target_row[col].dt.strftime("%Y-%m-%d")
+        logger.info(target_row.to_json(orient="records", indent=2))
+    else:
+        logger.warning("No matching row found with the specified criteria")
+
+    return df
+
+
+if __name__ == "__main__":
+    path = Path("data/latest.csv")
+    df = clean_csv(path)
