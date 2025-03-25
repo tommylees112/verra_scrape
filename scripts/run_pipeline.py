@@ -17,17 +17,17 @@ logger.add(LATEST_LOG_PATH, rotation="1 day", mode="w")
 
 
 def main():
-    logger.info("📥 Downloading latest data...")
+    logger.info("\n\n📥 Downloading latest data...")
     new_df = download_csv()
 
-    logger.info("🔍 Checking for changes...")
+    logger.info("\n\n🔍 Checking for changes...")
     diffs = detect_changes(new_df)
 
     if not diffs["new"].empty:
-        logger.info(f"🆕 {len(diffs['new'])} new rows found.")
+        logger.info(f"\n🆕 {len(diffs['new'])} new rows found.")
 
     if not diffs["removed"].empty:
-        logger.info(f"❌ {len(diffs['removed'])} removed rows found.")
+        logger.info(f"\n❌ {len(diffs['removed'])} removed rows found.")
 
     new_df.to_csv(LATEST_PATH, index=False)
     logger.success("✅ Updated latest view.")
