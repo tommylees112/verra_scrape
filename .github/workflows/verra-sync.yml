@@ -2,7 +2,7 @@ name: Weekly Verra Sync
 
 on:
   schedule:
-    - cron: '0 9 * * 1'  # Every Wednesday at 9am UTC
+    - cron: '0 9 * * 3'  # Every Wednesday at 9am UTC
   workflow_dispatch:
 
 jobs:
@@ -13,18 +13,18 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.12
+    - name: Install uv
+      run: |
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+        echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: uv sync
 
     - name: Run download + diff script
       run: |
         mkdir -p logs
-        python scripts/run_pipeline.py
+        uv run scripts/run_pipeline.py
 
     - name: Read log file
       id: log_content

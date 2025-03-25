@@ -5,9 +5,15 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from loguru import logger
 
-from verra.config import LATEST_PATH
+from verra.config import LATEST_LOG_PATH, LATEST_PATH, TODAY_LOG_PATH
 from verra.differ import detect_changes
 from verra.downloader import download_csv
+
+# Configure loguru at the start
+logger.add(TODAY_LOG_PATH, rotation="1 day")
+
+# overwrite the latest log file
+logger.add(LATEST_LOG_PATH, rotation="1 day", mode="w")
 
 
 def main():
