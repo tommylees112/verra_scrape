@@ -37,7 +37,7 @@ jobs:
         cat $LOG_FILE > latest_log.txt
 
     - name: Create GitHub Issue
-      uses: peter-evans/create-issue@v4
+      uses: peter-evans/create-issue@v3
       with:
         title: "Verra Registry Update ${{ github.run_number }}"
         body-file: latest_log.txt
