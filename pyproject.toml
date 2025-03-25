@@ -1,0 +1,12 @@
+[project]
+name = "verra-scrape"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "csvkit>=2.1.0",
+    "loguru>=0.7.3",
+    "matplotlib>=3.10.1",
+    "pandas>=2.2.3",
+]
