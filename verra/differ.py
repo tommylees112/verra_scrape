@@ -2,12 +2,14 @@ from typing import Dict, List, Set, Union
 
 import pandas as pd
 from deepdiff import DeepDiff
+from loguru import logger
 
 from verra.config import LATEST_PATH
+from verra.utils import detailed_column_summary
 
 
 def get_deep_diffs(
-    old_df: pd.DataFrame, new_df: pd.DataFrame, key: str = "Project ID"
+    old_df: pd.DataFrame, new_df: pd.DataFrame, key: str = "ID"
 ) -> List[Dict]:
     diffs: List[Dict] = []
     common_keys: Set[str] = set(old_df[key]) & set(new_df[key])
@@ -18,7 +20,7 @@ def get_deep_diffs(
 
         diff = DeepDiff(old_row, new_row, ignore_order=True)
         if diff:
-            diffs.append({"Project ID": k, "diff": diff.to_dict()})
+            diffs.append({"ID": k, "diff": diff.to_dict()})
 
     return diffs
 
@@ -26,13 +28,13 @@ def get_deep_diffs(
 def flatten_deepdiff(diffs: List[Dict]) -> pd.DataFrame:
     records: List[Dict[str, Union[str, any]]] = []
     for item in diffs:
-        pid = item["Project ID"]
+        pid = item["ID"]
         changes = item["diff"].get("values_changed", {})
         for path, change in changes.items():
             field = path.split("root['")[1].split("']")[0]
             records.append(
                 {
-                    "Project ID": pid,
+                    "ID": pid,
                     "Field": field,
                     "Old Value": change["old_value"],
                     "New Value": change["new_value"],
@@ -44,6 +46,23 @@ def flatten_deepdiff(diffs: List[Dict]) -> pd.DataFrame:
 def detect_changes(new_df: pd.DataFrame) -> Dict[str, pd.DataFrame]:
     try:
         old_df = pd.read_csv(LATEST_PATH)
+
+        with pd.option_context(
+            # Show all rows
+            "display.max_rows",
+            None,
+            # Show all columns
+            "display.max_columns",
+            None,
+            # Don't wrap to console width
+            "display.width",
+            None,
+            # # Don't truncate column contents
+            # "display.max_colwidth",
+            # None,
+        ):
+            logger.info(f"🔍 Summary of old data:\n{detailed_column_summary(old_df)}")
+
     except FileNotFoundError:
         return {
             "new": new_df,
