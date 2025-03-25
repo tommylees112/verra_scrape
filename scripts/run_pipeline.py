@@ -10,7 +10,7 @@ from verra.differ import detect_changes
 from verra.downloader import download_csv
 
 # Configure loguru at the start
-logger.add(TODAY_LOG_PATH, rotation="1 day")
+logger.add(TODAY_LOG_PATH, rotation="1 day", mode="w")
 
 # overwrite the latest log file
 logger.add(LATEST_LOG_PATH, rotation="1 day", mode="w")

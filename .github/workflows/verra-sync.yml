@@ -29,12 +29,12 @@ jobs:
         mkdir -p logs
         uv run scripts/run_pipeline.py
 
-    # - name: Read log file
-    #   id: log_content
-    #   run: |
-    #     LOG_FILE=$(ls -t logs/verra_*.log | head -n1)
-    #     echo "Using latest log file: $LOG_FILE"
-    #     cat $LOG_FILE > latest_log.txt
+    - name: Read log file
+      id: log_content
+      run: |
+        LOG_FILE=$(ls -t logs/verra_*.log | head -n1)
+        echo "Using latest log file: $LOG_FILE"
+        cat $LOG_FILE > latest_log.txt
 
     - name: Create GitHub Issue
       uses: peter-evans/create-issue-from-file@v5
