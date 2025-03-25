@@ -70,7 +70,3 @@ Contributions welcome! Feel free to:
 - 🐛 Report bugs
 - ✨ Request features
 - 🔧 Submit PRs
-
-## 📝 License
-
-MIT License

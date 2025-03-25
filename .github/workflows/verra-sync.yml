@@ -36,9 +36,12 @@ jobs:
         echo "Using latest log file: $LOG_FILE"
         cat $LOG_FILE > latest_log.txt
 
-    - name: Push log to GitHub Issue
-      uses: peter-evans/create-or-update-comment@v3
+    - name: Create GitHub Issue
+      uses: peter-evans/create-issue@v4
       with:
-        issue-number: 1  # Replace with the issue number you want to use
-        token: ${{ secrets.GH_TOKEN }}
+        title: "Verra Registry Update ${{ github.run_number }}"
         body-file: latest_log.txt
+        token: ${{ secrets.GH_TOKEN }}
+        labels: |
+          automated
+          verra-update
