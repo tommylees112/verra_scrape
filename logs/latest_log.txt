@@ -1,17 +1,17 @@
-2025-03-25 22:09:44.557 | INFO     | __main__:main:20 - 
+2025-03-26 09:06:02.975 | INFO     | __main__:main:20 - 
 
 📥 Downloading latest data...
-2025-03-25 22:09:48.550 | INFO     | verra.downloader:download_csv:26 - Table loaded.
-2025-03-25 22:09:48.550 | INFO     | verra.downloader:download_csv:29 - Waiting for table data to load...
-2025-03-25 22:09:50.423 | INFO     | verra.downloader:download_csv:34 - Found 250 rows in the table
-2025-03-25 22:09:50.423 | INFO     | verra.downloader:download_csv:43 - Table is populated, proceeding with download...
-2025-03-25 22:09:50.426 | INFO     | verra.downloader:download_csv:45 - Attempting to click download button...
-2025-03-25 22:09:52.489 | INFO     | verra.downloader:download_csv:50 - Download started! Saving to: /home/runner/work/verra_scrape/verra_scrape/data/archive/verra_2025-03-25.csv
-2025-03-25 22:09:52.535 | INFO     | verra.downloader:download_csv:55 - Downloaded file saved at: /home/runner/work/verra_scrape/verra_scrape/data/archive/verra_2025-03-25.csv
-2025-03-25 22:09:52.615 | INFO     | __main__:main:23 - 
+2025-03-26 09:06:04.484 | INFO     | verra.downloader:download_csv:26 - Table loaded.
+2025-03-26 09:06:04.484 | INFO     | verra.downloader:download_csv:29 - Waiting for table data to load...
+2025-03-26 09:06:08.300 | INFO     | verra.downloader:download_csv:34 - Found 250 rows in the table
+2025-03-26 09:06:08.300 | INFO     | verra.downloader:download_csv:43 - Table is populated, proceeding with download...
+2025-03-26 09:06:08.302 | INFO     | verra.downloader:download_csv:45 - Attempting to click download button...
+2025-03-26 09:06:10.209 | INFO     | verra.downloader:download_csv:50 - Download started! Saving to: /home/runner/work/verra_scrape/verra_scrape/data/archive/verra_2025-03-26.csv
+2025-03-26 09:06:10.243 | INFO     | verra.downloader:download_csv:55 - Downloaded file saved at: /home/runner/work/verra_scrape/verra_scrape/data/archive/verra_2025-03-26.csv
+2025-03-26 09:06:10.300 | INFO     | __main__:main:23 - 
 
 🔍 Checking for changes...
-2025-03-25 22:09:52.649 | INFO     | verra.differ:detect_changes:64 - 🔍 Summary of old data:
+2025-03-26 09:06:10.334 | INFO     | verra.differ:detect_changes:64 - 🔍 Summary of old data:
                                             column   dtype  n_unique  n_null memory_usage                                     example_values
 column_index                                                                                                                                
 0                                               ID   int64      4556       0     35.72 KB                     [5471, 5459, 5460, 5461, 5462]
@@ -27,4 +27,8 @@ column_index
 10                       Project Registration Date  object      1080    2010    209.63 KB  [nan, 2025-03-16, 2025-02-25, 2025-02-27, 2025...
 11                     Crediting Period Start Date  object      1486    1227    230.28 KB  [2021-07-01, 2023-08-01, 2022-03-01, 2024-05-1...
 12                       Crediting Period End Date  object      1917    1227    230.28 KB  [2028-06-30, 2053-07-31, 2052-02-29, 2042-02-2...
-2025-03-25 22:10:00.512 | SUCCESS  | __main__:main:33 - ✅ Updated latest view.
+2025-03-26 09:06:18.293 | INFO     | __main__:main:27 - 
+🆕 3 new rows found.
+2025-03-26 09:06:18.293 | INFO     | __main__:main:30 - 
+❌ 3 removed rows found.
+2025-03-26 09:06:18.315 | SUCCESS  | __main__:main:33 - ✅ Updated latest view.
